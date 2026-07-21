@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Metadata Extractor</title>
+
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:"Segoe UI",sans-serif;
+        }
+
+
+        body{
+
+            min-height:100vh;
+
+            background:#0b1220;
+
+            color:white;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            padding:20px;
+
+        }
+
+
+
+        .container{
+
+            width:100%;
+
+            max-width:900px;
+
+            background:#111827;
+
+            border-radius:20px;
+
+            padding:30px;
+
+            box-shadow:0 0 30px rgba(0,0,0,0.5);
+
+        }
+
+
+
+        .title{
+
+            text-align:center;
+
+            font-size:35px;
+
+            font-weight:bold;
+
+            margin-bottom:10px;
+
+        }
+
+
+
+        .subtitle{
+
+            text-align:center;
+
+            color:#9ca3af;
+
+            margin-bottom:30px;
+
+        }
+
+
+
+        .upload-box{
+
+            background:#1f2937;
+
+            padding:25px;
+
+            border-radius:15px;
+
+            text-align:center;
+
+        }
+
+
+
+        input[type="file"]{
+
+            margin:20px;
+
+            color:white;
+
+        }
+
+
+
+        button{
+
+            background:#2563eb;
+
+            color:white;
+
+            border:none;
+
+            padding:12px 30px;
+
+            border-radius:10px;
+
+            cursor:pointer;
+
+            font-size:16px;
+
+        }
+
+
+
+        button:hover{
+
+            background:#1d4ed8;
+
+        }
+
+
+
+        .result{
+
+            margin-top:30px;
+
+        }
+
+
+
+        table{
+
+            width:100%;
+
+            border-collapse:collapse;
+
+            margin-top:20px;
+
+            background:#1f2937;
+
+            border-radius:10px;
+
+            overflow:hidden;
+
+        }
+
+
+
+        th{
+
+            background:#2563eb;
+
+            padding:15px;
+
+            text-align:left;
+
+        }
+
+
+
+        td{
+
+            padding:12px;
+
+            border-bottom:1px solid #374151;
+
+            word-break:break-word;
+
+        }
+
+
+
+        tr:last-child td{
+
+            border-bottom:none;
+
+        }
+
+
+
+        .footer{
+
+            text-align:center;
+
+            margin-top:25px;
+
+            color:#9ca3af;
+
+            font-size:14px;
+
+        }
+
+
+
+        /* Mobile Design */
+
+        @media(max-width:600px){
+
+
+            .container{
+
+                padding:20px;
+
+            }
+
+
+            .title{
+
+                font-size:26px;
+
+            }
+
+
+            .subtitle{
+
+                font-size:14px;
+
+            }
+
+
+            table{
+
+                font-size:13px;
+
+            }
+
+
+            th,td{
+
+                padding:10px;
+
+            }
+
+
+            button{
+
+                width:100%;
+
+            }
+
+        }
+
+
+    </style>
+
+
+</head>
+
+
+
+<body>
+
+
+<div class="container">
+
+
+    <div class="title">
+
+        🔐 Metadata Extractor
+
+    </div>
+
+
+    <div class="subtitle">
+
+        Digital Forensics & File Intelligence Platform
+
+    </div>
+
+
+
+    <div class="upload-box">
+
+
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+
+
+            <input type="file" name="file" required>
+
+
+            <br>
+
+
+            <button type="submit">
+
+                Analyze File
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+
+
+
+    {% if metadata %}
+
+
+    <div class="result">
+
+
+        <h2>
+
+            Extracted Metadata
+
+        </h2>
+
+
+
+        <table>
+
+
+            <tr>
+
+                <th>
+
+                    Property
+
+                </th>
+
+
+                <th>
+
+                    Value
+
+                </th>
+
+
+            </tr>
+
+
+
+            {% for key,value in metadata.items() %}
+
+
+            <tr>
+
+                <td>
+
+                    {{key}}
+
+                </td>
+
+
+                <td>
+
+                    {{value}}
+
+                </td>
+
+
+            </tr>
+
+
+            {% endfor %}
+
+
+
+        </table>
+
+
+    </div>
+
+
+    {% endif %}
+
+
+
+    <div class="footer">
+
+        Metadata Extractor | Cybersecurity Project
+
+    </div>
+
+
+
+</div>
+
+
+
+</body>
+
+</html>
